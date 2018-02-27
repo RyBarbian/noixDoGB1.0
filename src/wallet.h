@@ -308,7 +308,7 @@ public:
     void KeepKey();
 };
 
-// Peershares: A reserve key that always returns the default key
+// GoDXoin: A reserve key that always returns the default key
 class CDefaultKey : public CReserveKey
 {
 public:

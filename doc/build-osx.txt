@@ -1,4 +1,4 @@
-Copyright (c) 2013-2014 Peershares Developers
+Copyright (c) 2014-2018 Smiles Developers
 Copyright (c) 2012-2013 Peercoin Developers
 Copyright (c) 2009-2012 Bitcoin Developers
 Distributed under the MIT/X11 software license, see the accompanying file
@@ -9,7 +9,7 @@ software written by Eric Young (eay@cryptsoft.com) and UPnP software written by
 Thomas Bernard.
 
 
-Mac OS X peersharesd build instructions
+Mac OS X godxoind build instructions
 
 Modified for Bitcoin by
 Laszlo Hanyecz <solar@heliacal.net>
@@ -18,15 +18,15 @@ Douglas Huff <dhuff@jrbobdobbs.org>
 Modified for Peercoin by 
 Jeff Larkin <jefflarkin@gmail.com>
 
-Modified for Peershares by
+Modified for Smiles by
 Ben Rossi <brossicrypto@gmail.com>
 
 
 
-See readme-qt.rst for instructions on building Peershares-QT, the
+See readme-qt.rst for instructions on building Smiles-QT, the
 graphical user interface.
 
-Tested on 10.8 and 10.9 (Intel).  Older versions of OS X (10.5 and 10.6) should be possible, but have not been tested. PowerPC (PPC) is not supported because it's big-endian.
+Tested on 10.8 and 10.9 (Intel).  Older versions of OS X (10.5 and 10.6) should be possible, but have not been tested. PowerPC (GODX) is not supported because it's big-endian.
 
 All of the commands should be executed in Terminal.app (/Applications/Utilities)
 
@@ -36,7 +36,7 @@ everything is available in /usr not just /Developer. You can get the current ver
 
 1.  Clone the github tree to get the source code:
 
-git clone git@github.com:peershares/peershares.git
+git clone git@github.com:godxoin/godxoin.git
 
 2.  Download and install MacPorts from http://www.macports.org/
 
@@ -52,14 +52,14 @@ sudo port install qrencode
 
 4.  Now you should be able to build bitcoind:
 
-cd peershares/src
+cd godxoin/src
 make -f makefile.osx
 # To build 64-bit binaies:
 make -f makefile.osx RELEASE=true 64BIT=true
 
 Run:
-  ./peersharesd --help  # for a list of command-line options.
+  ./godxoind --help  # for a list of command-line options.
 Run
-  ./peersharesd -daemon # to start the bitcoin daemon.
+  ./godxoind -daemon # to start the bitcoin daemon.
 Run
-  ./peersharesd help # When the daemon is running, to get a list of RPC commands
+  ./godxoind help # When the daemon is running, to get a list of RPC commands

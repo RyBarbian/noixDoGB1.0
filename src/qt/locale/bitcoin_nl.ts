@@ -6,18 +6,18 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="14"/>
-        <source>About Peershares</source>
-        <translation>Over Peershares
+        <source>About GoDXoin</source>
+        <translation>Over GoDXoin
 </translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="53"/>
-        <source>&lt;b&gt;Peershares&lt;/b&gt; : version</source>
+        <source>&lt;b&gt;GoDXoin&lt;/b&gt; : version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="91"/>
-        <source>Copyright © 2013-2014 Peershares Developers</source>
+        <source>Copyright © 2013-2014 GoDXoin Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -42,7 +42,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="20"/>
-        <source>These are your Peershares addresses for receiving shares.  You may want to give a different one to each sender so you can keep track of who is transferring shares to you.</source>
+        <source>These are your GoDXoin addresses for receiving shares.  You may want to give a different one to each sender so you can keep track of who is transferring shares to you.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -77,7 +77,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="96"/>
-        <source>Sign a message to prove you own this Peershares address</source>
+        <source>Sign a message to prove you own this GoDXoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -245,7 +245,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="112"/>
-        <source>Peershares will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your peershares from being stolen by malware infecting your computer.</source>
+        <source>GoDXoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your godxoin from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -300,13 +300,13 @@ Are you sure you wish to encrypt your wallet?</source>
     <name>BitcoinGUI</name>
     <message>
         <location filename="../bitcoin.cpp" line="128"/>
-        <source>A fatal error occured. Peershares can no longer continue safely and will quit.</source>
+        <source>A fatal error occured. GoDXoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="78"/>
-        <source>Peershares Portfolio</source>
-        <translation type="unfinished">Peershares-portemonnee</translation>
+        <source>GoDXoin Portfolio</source>
+        <translation type="unfinished">GoDXoin-portemonnee</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="186"/>
@@ -355,7 +355,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="211"/>
-        <source>Send shares to a Peershares address</source>
+        <source>Send shares to a GoDXoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -385,8 +385,8 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="241"/>
-        <source>Show information about Peershares</source>
-        <translation type="unfinished">Laat informatie zien over Peershares</translation>
+        <source>Show information about GoDXoin</source>
+        <translation type="unfinished">Laat informatie zien over GoDXoin</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="243"/>
@@ -405,17 +405,17 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="247"/>
-        <source>Modify configuration options for Peershares</source>
-        <translation type="unfinished">Wijzig instellingen van Peershares</translation>
+        <source>Modify configuration options for GoDXoin</source>
+        <translation type="unfinished">Wijzig instellingen van GoDXoin</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="249"/>
-        <source>Show/Hide &amp;Peershares</source>
+        <source>Show/Hide &amp;GoDXoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="250"/>
-        <source>Show or hide the Peershares window</source>
+        <source>Show or hide the GoDXoin window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -485,7 +485,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="266"/>
-        <source>Export the Peercoin keys associated with the Peershares addresses to Peercoin via RPC</source>
+        <source>Export the Peercoin keys associated with the GoDXoin addresses to Peercoin via RPC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -535,20 +535,20 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="410"/>
-        <source>Peershares client</source>
+        <source>GoDXoin client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="437"/>
-        <source>Peershares-qt</source>
-        <translation type="unfinished">Peershares-qt</translation>
+        <source>GoDXoin-qt</source>
+        <translation type="unfinished">GoDXoin-qt</translation>
     </message>
     <message numerus="yes">
         <location filename="../bitcoingui.cpp" line="501"/>
-        <source>%n active connection(s) to Peershares network</source>
+        <source>%n active connection(s) to GoDXoin network</source>
         <translation type="unfinished">
-            <numerusform>%n actieve connectie naar Peersharesnetwerk</numerusform>
-            <numerusform>%n actieve connecties naar Peersharesnetwerk</numerusform>
+            <numerusform>%n actieve connectie naar GoDXoinnetwerk</numerusform>
+            <numerusform>%n actieve connecties naar GoDXoinnetwerk</numerusform>
         </translation>
     </message>
     <message>
@@ -726,7 +726,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="286"/>
-        <source>Whether to show Peershares addresses in the transaction list</source>
+        <source>Whether to show GoDXoin addresses in the transaction list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -845,8 +845,8 @@ Adres: %4
     <name>MainOptionsPage</name>
     <message>
         <location filename="../optionsdialog.cpp" line="172"/>
-        <source>Automatically start Peershares after the computer is turned on</source>
-        <translation>Start Peershares automatisch wanneer de computer wordt aangezet</translation>
+        <source>Automatically start GoDXoin after the computer is turned on</source>
+        <translation>Start GoDXoin automatisch wanneer de computer wordt aangezet</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="176"/>
@@ -865,12 +865,12 @@ Adres: %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="186"/>
-        <source>Automatically open the Peershares client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Open de Peershares-poort automatisch op de router. Dit werkt alleen als de router UPnP ondersteunt.</translation>
+        <source>Automatically open the GoDXoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Open de GoDXoin-poort automatisch op de router. Dit werkt alleen als de router UPnP ondersteunt.</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="190"/>
-        <source>Connect to the Peershares network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
+        <source>Connect to the GoDXoin network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -900,7 +900,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="171"/>
-        <source>&amp;Start Peershares on system startup</source>
+        <source>&amp;Start GoDXoin on system startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -943,7 +943,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/messagepage.ui" line="20"/>
-        <source>You can sign messages with your Peershares addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages with your GoDXoin addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -983,7 +983,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/messagepage.ui" line="117"/>
-        <source>Sign a message to prove you own this Peershares address</source>
+        <source>Sign a message to prove you own this GoDXoin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1172,7 +1172,7 @@ Adres: %4
     <name>RPCConsole</name>
     <message>
         <location filename="../forms/rpcconsole.ui" line="14"/>
-        <source>Peershares Debugging Window</source>
+        <source>GoDXoin Debugging Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1264,7 +1264,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="306"/>
-        <source>Welcome to the Peershares RPC console.&lt;br&gt;Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.&lt;br&gt;Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <source>Welcome to the GoDXoin RPC console.&lt;br&gt;Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.&lt;br&gt;Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1438,7 +1438,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="25"/>
-        <source>Enter a Peershares address</source>
+        <source>Enter a GoDXoin address</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1911,8 +1911,8 @@ Adres: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="8"/>
-        <source>Unable to bind to port %d on this computer.  Peershares is probably already running.</source>
-        <translation type="unfinished">Kan niet binden aan poort %d op deze computer. Peershares draait vermoedelijk reeds.</translation>
+        <source>Unable to bind to port %d on this computer.  GoDXoin is probably already running.</source>
+        <translation type="unfinished">Kan niet binden aan poort %d op deze computer. GoDXoin draait vermoedelijk reeds.</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="11"/>
@@ -1921,8 +1921,8 @@ Adres: %4
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="12"/>
-        <source>Peershares version</source>
-        <translation type="unfinished">Peersharesversie</translation>
+        <source>GoDXoin version</source>
+        <translation type="unfinished">GoDXoinversie</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="13"/>
@@ -1931,7 +1931,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="14"/>
-        <source>Send command to -server or peersharesd</source>
+        <source>Send command to -server or godxoind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1954,12 +1954,12 @@ Adres: %4
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="18"/>
-        <source>Specify configuration file (default: peershares.conf)</source>
+        <source>Specify configuration file (default: godxoin.conf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="19"/>
-        <source>Specify pid file (default: peersharesd.pid)</source>
+        <source>Specify pid file (default: godxoind.pid)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2236,12 +2236,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="78"/>
-        <source>Cannot obtain a lock on data directory %s.  Peershares is probably already running.</source>
-        <translation type="unfinished">Kan geen lock op de gegevensdirectory %s verkrijgen. Peershares draait vermoedelijk reeds.</translation>
+        <source>Cannot obtain a lock on data directory %s.  GoDXoin is probably already running.</source>
+        <translation type="unfinished">Kan geen lock op de gegevensdirectory %s verkrijgen. GoDXoin draait vermoedelijk reeds.</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="81"/>
-        <source>Peershares</source>
+        <source>GoDXoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2276,12 +2276,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="88"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Peershares</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of GoDXoin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="89"/>
-        <source>Wallet needed to be rewritten: restart Peershares to complete</source>
+        <source>Wallet needed to be rewritten: restart GoDXoin to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2344,7 +2344,7 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=peersharesrpc
+rpcuser=godxoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 If the file does not exist, create it with owner-readable-only file permissions.
@@ -2370,8 +2370,8 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="119"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Peershares will not work properly.</source>
-        <translation type="unfinished">Waarschuwing: Controleer dat de datum en tijd op uw computer correct zijn ingesteld. Als uw klok fout staat zal Peershares niet correct werken.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong GoDXoin will not work properly.</source>
+        <translation type="unfinished">Waarschuwing: Controleer dat de datum en tijd op uw computer correct zijn ingesteld. Als uw klok fout staat zal GoDXoin niet correct werken.</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="122"/>

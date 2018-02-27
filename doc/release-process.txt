@@ -16,7 +16,7 @@
 
 * perform gitian builds
 
-  * From a directory containing the peershares source, gitian-builder and gitian.sigs
+  * From a directory containing the godxoin source, gitian-builder and gitian.sigs
    export SIGNER=(your gitian key, ie bluematt, sipa, etc)
    export VERSION=0.5.1
    cd ./gitian-builder
@@ -33,50 +33,50 @@
    wget 'https://svn.boost.org/trac/boost/raw-attachment/ticket/7262/boost-mingw.patch' -O boost-mingw-gas-cross-compile-2013-03-03.patch
    wget 'https://download.qt-project.org/archive/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz'
    cd ..
-   ./bin/gbuild ../peershares/contrib/gitian-descriptors/boost-linux.yml
+   ./bin/gbuild ../godxoin/contrib/gitian-descriptors/boost-linux.yml
    cp build/out/boost-linux*-1.55.0-gitian-r1.zip inputs/
-   ./bin/gbuild ../peershares/contrib/gitian-descriptors/deps-linux.yml
-   cp build/out/peershares-deps-linux*-gitian-r5.zip inputs/
-   ./bin/gbuild ../peershares/contrib/gitian-descriptors/boost-win.yml
+   ./bin/gbuild ../godxoin/contrib/gitian-descriptors/deps-linux.yml
+   cp build/out/godxoin-deps-linux*-gitian-r5.zip inputs/
+   ./bin/gbuild ../godxoin/contrib/gitian-descriptors/boost-win.yml
    cp build/out/boost-win*-1.55.0-gitian-r6.zip inputs/
-   ./bin/gbuild ../peershares/contrib/gitian-descriptors/qt-win.yml
+   ./bin/gbuild ../godxoin/contrib/gitian-descriptors/qt-win.yml
    cp build/out/qt-win*-4.8.5-gitian-r3.zip inputs/
-   ./bin/gbuild ../peershares/contrib/gitian-descriptors/deps-win.yml
-   cp build/out/peershares-deps-win*-gitian-r12.zip inputs/
+   ./bin/gbuild ../godxoin/contrib/gitian-descriptors/deps-win.yml
+   cp build/out/godxoin-deps-win*-gitian-r12.zip inputs/
 
   * Build for Linux32 and Linux64:
-   ./bin/gbuild --commit peershares=v${VERSION} ../peershares/contrib/gitian-descriptors/gitian-linux.yml
-   ./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs/ ../peershares/contrib/gitian-descriptors/gitian-linux.yml
+   ./bin/gbuild --commit godxoin=v${VERSION} ../godxoin/contrib/gitian-descriptors/gitian-linux.yml
+   ./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs/ ../godxoin/contrib/gitian-descriptors/gitian-linux.yml
    pushd build/out
-   zip -r peershares-${VERSION}-linux-gitian.zip *
-   mv peershares-${VERSION}-linux-gitian.zip ../../
+   zip -r godxoin-${VERSION}-linux-gitian.zip *
+   mv godxoin-${VERSION}-linux-gitian.zip ../../
    popd
 
   * Build for Win32 and Win64:
-   ./bin/gbuild --commit bitcoin=v${VERSION} ../peershares/contrib/gitian-descriptors/gitian-win.yml
-   ./bin/gsign --signer $SIGNER --release ${VERSION}-win --destination ../gitian.sigs/ ../peershares/contrib/gitian-descriptors/gitian-win.yml
+   ./bin/gbuild --commit bitcoin=v${VERSION} ../godxoin/contrib/gitian-descriptors/gitian-win.yml
+   ./bin/gsign --signer $SIGNER --release ${VERSION}-win --destination ../gitian.sigs/ ../godxoin/contrib/gitian-descriptors/gitian-win.yml
    pushd build/out
-   zip -r peershares-${VERSION}-win-gitian.zip *
-   mv peershares-${VERSION}-win-gitian.zip ../../
+   zip -r godxoin-${VERSION}-win-gitian.zip *
+   mv godxoin-${VERSION}-win-gitian.zip ../../
    popd
 
   Build output expected:
-  1. linux 32-bit and 64-bit binaries + source (peershares-${VERSION}-linux-gitian.zip)
-  2. windows 32-bit and 64-bit binaries, installers + source (peershares-${VERSION}-win-gitian.zip)
+  1. linux 32-bit and 64-bit binaries + source (godxoin-${VERSION}-linux-gitian.zip)
+  2. windows 32-bit and 64-bit binaries, installers + source (godxoin-${VERSION}-win-gitian.zip)
   3. Gitian signatures (in gitian.sigs/${VERSION}[-win]/(your gitian key)/
 
 * repackage gitian builds for release as stand-alone zip/tar/installer exe
 
   * Linux .tar.gz:
-   unzip peershares-${VERSION}-linux-gitian.zip -d peershares-${VERSION}-linux
-   tar czvf peershares-${VERSION}-linux.tar.gz peershares-${VERSION}-linux
-   rm -rf peershares-${VERSION}-linux
+   unzip godxoin-${VERSION}-linux-gitian.zip -d godxoin-${VERSION}-linux
+   tar czvf godxoin-${VERSION}-linux.tar.gz godxoin-${VERSION}-linux
+   rm -rf godxoin-${VERSION}-linux
 
   * Windows .zip and setup.exe:
-   unzip peershares-${VERSION}-win-gitian.zip -d peershares-${VERSION}-win
-   mv peershares-${VERSION}-win/peershares-*-setup.exe .
-   zip -r peershares-${VERSION}-win.zip peershares-${VERSION}-win
-   rm -rf peershares-${VERSION}-win
+   unzip godxoin-${VERSION}-win-gitian.zip -d godxoin-${VERSION}-win
+   mv godxoin-${VERSION}-win/godxoin-*-setup.exe .
+   zip -r godxoin-${VERSION}-win.zip godxoin-${VERSION}-win
+   rm -rf godxoin-${VERSION}-win
 
 * perform Mac build
   See this blog post for how Gavin set up his build environment to build the OSX
@@ -119,31 +119,31 @@
 
 * After 3 or more people have gitian-built, repackage gitian-signed zips:
 
-  * From a directory containing peershares source, gitian.sigs and gitian zips
+  * From a directory containing godxoin source, gitian.sigs and gitian zips
    export VERSION=0.5.1
-   mkdir peershares-${VERSION}-linux-gitian
-   pushd peershares-${VERSION}-linux-gitian
-   unzip ../peershares-${VERSION}-linux-gitian.zip
+   mkdir godxoin-${VERSION}-linux-gitian
+   pushd godxoin-${VERSION}-linux-gitian
+   unzip ../godxoin-${VERSION}-linux-gitian.zip
    mkdir gitian
-   cp ../peershares/contrib/gitian-downloader/*.pgp ./gitian/
+   cp ../godxoin/contrib/gitian-downloader/*.pgp ./gitian/
    for signer in $(ls ../gitian.sigs/${VERSION}/); do
-     cp ../gitian.sigs/${VERSION}/${signer}/peershares-build.assert ./gitian/${signer}-build.assert
-     cp ../gitian.sigs/${VERSION}/${signer}/peershares-build.assert.sig ./gitian/${signer}-build.assert.sig
+     cp ../gitian.sigs/${VERSION}/${signer}/godxoin-build.assert ./gitian/${signer}-build.assert
+     cp ../gitian.sigs/${VERSION}/${signer}/godxoin-build.assert.sig ./gitian/${signer}-build.assert.sig
    done
-   zip -r peershares-${VERSION}-linux-gitian.zip *
-   cp peershares-${VERSION}-linux-gitian.zip ../
+   zip -r godxoin-${VERSION}-linux-gitian.zip *
+   cp godxoin-${VERSION}-linux-gitian.zip ../
    popd
-   mkdir peershares-${VERSION}-win-gitian
-   pushd peershares-${VERSION}-win-gitian
-   unzip ../peershares-${VERSION}-win-gitian.zip
+   mkdir godxoin-${VERSION}-win-gitian
+   pushd godxoin-${VERSION}-win-gitian
+   unzip ../godxoin-${VERSION}-win-gitian.zip
    mkdir gitian
-   cp ../peershares/contrib/gitian-downloader/*.pgp ./gitian/
+   cp ../godxoin/contrib/gitian-downloader/*.pgp ./gitian/
    for signer in $(ls ../gitian.sigs/${VERSION}-win/); do
-     cp ../gitian.sigs/${VERSION}-win/${signer}/peershares-build.assert ./gitian/${signer}-build.assert
-     cp ../gitian.sigs/${VERSION}-win/${signer}/peershares-build.assert.sig ./gitian/${signer}-build.assert.sig
+     cp ../gitian.sigs/${VERSION}-win/${signer}/godxoin-build.assert ./gitian/${signer}-build.assert
+     cp ../gitian.sigs/${VERSION}-win/${signer}/godxoin-build.assert.sig ./gitian/${signer}-build.assert.sig
    done
-   zip -r peershares-${VERSION}-win-gitian.zip *
-   cp peershares-${VERSION}-win-gitian.zip ../
+   zip -r godxoin-${VERSION}-win-gitian.zip *
+   cp godxoin-${VERSION}-win-gitian.zip ../
    popd
 
   * Upload gitian zips to SourceForge

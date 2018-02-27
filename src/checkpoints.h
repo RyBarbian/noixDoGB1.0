@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_CHECKPOINT_H
@@ -49,7 +49,7 @@ namespace Checkpoints
     bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 }
 
-// Peershares: synchronized checkpoint
+// GoDXoin: synchronized checkpoint
 class CUnsignedSyncCheckpoint
 {
 public:

@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,9 +21,8 @@ using namespace boost;
 //
 // Global state
 //
-static const uint256 hashGenesisBlockOfficial("0x000000d78e35e381ca738ceb855b9faf528f0970d994ce4eb4560b56cbe2f6c4");
-static const uint256 hashGenesisBlockTestNet ("0x0000013585f2f416fae10cb9dfe7b93f4628802c27fab1ce54e6a47ead252568");
-
+static const uint256 hashGenesisBlockOfficial("0x00000b3226ec051b4c654b31a0f65fefe17f36d71771092ffbdc0613b8d014f5");
+static const uint256 hashGenesisBlockTestNet ("0x0000080e3b1da6aff514daa5a1844b4394ec11f1962bed1aed6d5c229499b67e");
 CCriticalSection cs_setpwalletRegistered;
 set<CWallet*> setpwalletRegistered;
 
@@ -39,7 +38,7 @@ static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 static CBigNum bnInitialHashTarget(~uint256(0) >> 24);
 static CBigNum bnInitialProofOfStakeHashTarget(~uint256(0) >> 20);
 unsigned int nStakeMinAge = STAKE_MIN_AGE;
-int nCoinbaseMaturity = COINBASE_MATURITY_PPC;
+int nCoinbaseMaturity = COINBASE_MATURITY_GODX;
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 CBigNum bnBestChainTrust = 0;
@@ -61,7 +60,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Peershares Signed Message:\n";
+const string strMessageMagic = "GoDXoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -125,7 +124,7 @@ void static SyncWithWallets(const CTransaction& tx, const CBlock* pblock = NULL,
 {
     if (!fConnect)
     {
-        // Peershares: wallets need to refund inputs when disconnecting coinstake
+        // GoDXoin: wallets need to refund inputs when disconnecting coinstake
         if (tx.IsCoinStake())
         {
             BOOST_FOREACH(CWallet* pwallet, setpwalletRegistered)
@@ -478,7 +477,7 @@ bool CTransaction::CheckTransaction() const
         const CTxOut& txout = vout[i];
         if (txout.IsEmpty() && (!IsCoinBase()) && (!IsCoinStake()))
             return DoS(100, error("CTransaction::CheckTransaction() : txout empty for user transaction"));
-        // Peershares: enforce minimum output amount
+        // GoDXoin: enforce minimum output amount
         if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT)
             return DoS(100, error("CTransaction::CheckTransaction() : txout.nValue below minimum"));
         if (txout.nValue > MAX_MONEY)
@@ -849,7 +848,7 @@ int64 GetProofOfWorkReward(unsigned int nBits)
     return IPO_SHARES / PROOF_OF_WORK_BLOCKS; //this will only be used to create initial shares
 }
 
-// peershares: minter's coin stake is rewarded based on coin age spent (coin-days)
+// godxoin: minter's coin stake is rewarded based on coin age spent (coin-days)
 int64 GetProofOfStakeReward(int64 nCoinAge)
 {
     static int64 nRewardCoinYear = CENT;  // creation amount per coin-year
@@ -1925,7 +1924,7 @@ bool CBlock::AcceptBlock()
     CBlockIndex* pindexPrev = (*mi).second;
     int nHeight = pindexPrev->nHeight+1;
 
-    // Peershares: check switch from proof of work to proof of stake
+    // GoDXoin: check switch from proof of work to proof of stake
     if (nHeight <= PROOF_OF_WORK_BLOCKS)
     {
         if (IsProofOfStake())
@@ -2011,7 +2010,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
         {
             printf("WARNING: ProcessBlock(): check proof-of-stake failed for block %s\n", hash.ToString().c_str());
 
-            // peershares: ask for missing blocks
+            // godxoin: ask for missing blocks
             if (pfrom)
                 pfrom->PushGetBlocks(pindexBest, pblock->GetHash());
 
@@ -2170,7 +2169,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        ThreadSafeMessageBox(strMessage, "Peershares", wxOK | wxICON_EXCLAMATION | wxMODAL);
+        ThreadSafeMessageBox(strMessage, "GoDXoin", wxOK | wxICON_EXCLAMATION | wxMODAL);
         StartShutdown();
         return false;
     }
@@ -2232,7 +2231,7 @@ bool LoadBlockIndex(bool fAllowNew)
     }
 
     printf("%s Network: genesis=0x%s nBitsLimit=0x%08x nBitsInitial=0x%08x nStakeMinAge=%d nCoinbaseMaturity=%d nModifierInterval=%d\n",
-           fTestNet? "Test" : "Peershares", hashGenesisBlock.ToString().substr(0, 20).c_str(), bnProofOfWorkLimit.GetCompact(), bnInitialHashTarget.GetCompact(), nStakeMinAge, nCoinbaseMaturity, nModifierInterval);
+           fTestNet? "Test" : "GoDXoin", hashGenesisBlock.ToString().substr(0, 20).c_str(), bnProofOfWorkLimit.GetCompact(), bnInitialHashTarget.GetCompact(), nStakeMinAge, nCoinbaseMaturity, nModifierInterval);
 
     //
     // Load block index
@@ -2258,15 +2257,15 @@ bool LoadBlockIndex(bool fAllowNew)
         //   vMerkleTree: 4a5e1e
 
         // Genesis block
-        const char* pszTimestamp = "intentionally broken genesis block - build is for public testnet only!";
-        unsigned int nTimeGenesis=1231231231;
-        unsigned int nNonceGenesis=123123;
+        const char* pszTimestamp = "This is who we are.";
+        unsigned int nTimeGenesis=1518292632;
+        unsigned int nNonceGenesis=2284901;
 
         if (fTestNet)
         {
-            pszTimestamp="April 2, 2014 Supreme Court Strikes Down Overall Campaign Contribution Limits";
-            nTimeGenesis=1396491392;
-            nNonceGenesis=1130877;
+            pszTimestamp="Love will save us all.";
+            nTimeGenesis=1518292643;
+            nNonceGenesis=38528;
         }
 
 
@@ -2298,21 +2297,21 @@ bool LoadBlockIndex(bool fAllowNew)
             block.nNonce++;
         }
      
-        printf("Peershares Genesis Block Found:\n");
+        printf("GoDXoin Genesis Block Found:\n");
         printf("genesis hash=%s\n", block.GetHash().ToString().c_str());
         printf("merkle root=%s\n", block.hashMerkleRoot.ToString().c_str());
         block.print();
      
-        printf("End Peershares Genesis Block\n");
+        printf("End GoDXoin Genesis Block\n");
 
         //// debug print
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         if (!fTestNet)
-            assert(block.hashMerkleRoot == uint256("0xf88246c72a053cc2176dbf2ac773bcf79f021bba9c2c3c8fccc0735c37d9354c"));
+            assert(block.hashMerkleRoot == uint256("0x489a519648aeba0e9de3d87960a1b86cc55688762c1f03e9d69ac702d6d6412f"));
         else
-            assert(block.hashMerkleRoot == uint256("0xde9e0c68d6503ae8c0c3d368b200dfc403192cdf926041565fe9de22be8ee1a4"));
+            assert(block.hashMerkleRoot == uint256("0x1580db2b7034e8820e8e63bd9f58ebb9db40717496a9be63ab645cc58d4af306"));
 
         block.print();
         assert(block.GetHash() == hashGenesisBlock);
@@ -2475,14 +2474,14 @@ string GetWarnings(string strFor)
     if (Checkpoints::IsSyncCheckpointTooOld(60 * 60 * 24 * 10) && !fTestNet)
     {
         nPriority = 100;
-        strStatusBar = "WARNING: Checkpoint is too old. Please wait for the block chain to download, or notify developers of the issue (https://github.com/Peershares/Peershares/issues).";
+        strStatusBar = "WARNING: Checkpoint is too old. Please wait for the block chain to download, or notify developers of the issue (https://github.com/GoDXoin/GoDXoin/issues).";
     }
 
     // peercoin: if detected invalid checkpoint enter safe mode
     if (Checkpoints::hashInvalidCheckpoint != 0)
     {
         nPriority = 3000;
-        strStatusBar = strRPC = "WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers of the issue (https://github.com/Peershares/Peershares/issues).";
+        strStatusBar = strRPC = "WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers of the issue (https://github.com/GoDXoin/GoDXoin/issues).";
     }
 
     // Alerts
@@ -2842,7 +2841,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                 printf("  got inventory: %s  %s\n", inv.ToString().c_str(), fAlreadyHave ? "have" : "new");
 
             if (!fAlreadyHave)
-                pfrom->AskFor(inv, IsInitialBlockDownload()); // peershares: immediate retry during initial download
+                pfrom->AskFor(inv, IsInitialBlockDownload()); // godxoin: immediate retry during initial download
             else if (inv.type == MSG_BLOCK && mapOrphanBlocks.count(inv.hash)) {
                 pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(mapOrphanBlocks[inv.hash]));
             } else if (nInv == nLastBlock) {
@@ -2896,7 +2895,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                         // peercoin: send latest proof-of-work block to allow the
                         // download node to accept as orphan (proof-of-stake 
                         // block might be rejected by stake connection check)
-                        // peershares: send latest block
+                        // godxoin: send latest block
                         vector<CInv> vInv;
                         vInv.push_back(CInv(MSG_BLOCK, hashBestChain));
                         pfrom->PushMessage("inv", vInv);

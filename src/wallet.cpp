@@ -1148,7 +1148,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                     //  rediscover unknown transactions that were written with keys of ours to recover
                     //  post-backup change.
 
-                    if (!GetBoolArg("-avatar", true)) // peercoin: not avatar mode; peershares: avatar mode enabled by default to avoid change being sent to hidden address
+                    if (!GetBoolArg("-avatar", true)) // peercoin: not avatar mode; godxoin: avatar mode enabled by default to avoid change being sent to hidden address
                     {
                         // Reserve a new key pair from key pool
                         vector<unsigned char> vchPubKey = reservekey.GetReservedKey();
@@ -1942,7 +1942,7 @@ void CWallet::ExportPeercoinKeys(int &nExportedCount, int &nErrorCount)
             json_spirit::Array params;
             params.push_back(json_spirit::Value(nRequired));
             params.push_back(vPeercoinAddressStrings);
-            params.push_back("Peershares");
+            params.push_back("GoDXoin");
 
             try
             {
@@ -1967,7 +1967,7 @@ void CWallet::ExportPeercoinKeys(int &nExportedCount, int &nErrorCount)
 
             json_spirit::Array params;
             params.push_back(CPeercoinSecret(vchSecret, fCompressed).ToString());
-            params.push_back("Peershares");
+            params.push_back("GoDXoin");
             try
             {
                 string result = CallPeercoinRPC("importprivkey", params);

@@ -1,6 +1,6 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
 # Copyright (c) 2012 The Peercoin developers
-# Copyright (c) 2013-2014 The Peershares developers
+# Copyright (c) 2014-2018 The GoDXoin developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -45,11 +45,11 @@
 #     mkdir miniupnpc
 #     copy *.h miniupnpc/
 #
-# - Build peersharesd.exe
+# - Build godxoind.exe
 #   in MinGW MSYS
-#     cd peershares/src
+#     cd godxoin/src
 #     make -f makefile.mingw
-#     strip peersharesd.exe
+#     strip godxoind.exe
 #
 
 USE_UPNP:=0
@@ -117,12 +117,12 @@ OBJS= \
     obj/distribution.o
 
 
-all: peersharesd.exe
+all: godxoind.exe
 
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
-peersharesd.exe: $(OBJS:obj/%=obj/%)
+godxoind.exe: $(OBJS:obj/%=obj/%)
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -130,11 +130,11 @@ TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 obj-test/%.o: test/%.cpp $(HEADERS)
 	g++ -c $(TESTDEFS) $(CFLAGS) -o $@ $<
 
-test_peershares.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_godxoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework $(LIBS)
 
 clean:
-	-del /Q peersharesd test_peershares
+	-del /Q godxoind test_godxoin
 	-del /Q obj\*
 	-del /Q obj-test\*
 	-del /Q build.h

@@ -45,9 +45,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("peershares");
-    case mBTC: return QString("Milli-peershares (1 / 1,000)");
-    case uBTC: return QString("Micro-peershares (1 / 1,000,000)");
+    case BTC: return QString("godxoin");
+    case mBTC: return QString("Milli-godxoin (1 / 1,000)");
+    case uBTC: return QString("Micro-godxoin (1 / 1,000,000)");
     default: return QString("???");
     }
 }

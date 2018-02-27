@@ -1,10 +1,10 @@
 /*
- * Qt4 Peershares GUI.
+ * Qt4 GoDXoin GUI.
  *
  * W.J. van der Laan 2011-2012
  * The Bitcoin Developers 2011-2012
  * The Peercoin Developers 2011-2013
- * The Peershares Developers 2013-2014
+ * The GoDXoin Developers 2013-2014
  */
 #include "bitcoingui.h"
 #include "transactiontablemodel.h"
@@ -75,9 +75,9 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     rpcConsole(0)
 {
     resize(850, 550);
-    setWindowTitle(tr("Peershares Portfolio"));
+    setWindowTitle(tr("GoDXoin Portfolio"));
 #ifndef Q_WS_MAC
-    setWindowIcon(QIcon(":icons/peershares"));
+    setWindowIcon(QIcon(":icons/godxoin"));
 #else
     setUnifiedTitleAndToolBarOnMac(true);
     QApplication::setAttribute(Qt::AA_DontShowIconsInMenus);
@@ -208,7 +208,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(receiveCoinsAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send shares"), this);
-    sendCoinsAction->setToolTip(tr("Send shares to a Peershares address"));
+    sendCoinsAction->setToolTip(tr("Send shares to a GoDXoin address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -237,17 +237,17 @@ void BitcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/peershares"), tr("&About %1").arg(qApp->applicationName()), this);
-    aboutAction->setToolTip(tr("Show information about Peershares"));
+    aboutAction = new QAction(QIcon(":/icons/godxoin"), tr("&About %1").arg(qApp->applicationName()), this);
+    aboutAction->setToolTip(tr("Show information about GoDXoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for Peershares"));
+    optionsAction->setToolTip(tr("Modify configuration options for GoDXoin"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
-    toggleHideAction = new QAction(QIcon(":/icons/peershares"), tr("Show/Hide &Peershares"), this);
-    toggleHideAction->setToolTip(tr("Show or hide the Peershares window"));
+    toggleHideAction = new QAction(QIcon(":/icons/godxoin"), tr("Show/Hide &GoDXoin"), this);
+    toggleHideAction->setToolTip(tr("Show or hide the GoDXoin window"));
     exportAction = new QAction(QIcon(":/icons/export"), tr("&Export..."), this);
     exportAction->setToolTip(tr("Export the data in the current tab to a file"));
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Portfolio"), this);
@@ -263,7 +263,7 @@ void BitcoinGUI::createActions()
     openRPCConsoleAction = new QAction(tr("&Debug window"), this);
     openRPCConsoleAction->setToolTip(tr("Open debugging and diagnostic console"));
     exportPeercoinKeysAction = new QAction(QIcon(":/icons/export"), tr("&Export Peercoin keys"), this);
-    exportPeercoinKeysAction->setToolTip(tr("Export the Peercoin keys associated with the Peershares addresses to Peercoin via RPC"));
+    exportPeercoinKeysAction->setToolTip(tr("Export the Peercoin keys associated with the GoDXoin addresses to Peercoin via RPC"));
     distributeDividendsAction = new QAction(tr("&Distribute dividends"), this);
     distributeDividendsAction->setToolTip(tr("Distribute dividends to share holders"));
 
@@ -346,9 +346,9 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
             QString title_testnet = windowTitle() + QString(" ") + tr("[testnet]");
             setWindowTitle(title_testnet);
 #ifndef Q_WS_MAC
-            setWindowIcon(QIcon(":icons/peershares_testnet"));
+            setWindowIcon(QIcon(":icons/godxoin_testnet"));
 #else
-            MacDockIconHandler::instance()->setIcon(QIcon(":icons/peershares_testnet"));
+            MacDockIconHandler::instance()->setIcon(QIcon(":icons/godxoin_testnet"));
 #endif
             if(trayIcon)
             {
@@ -407,7 +407,7 @@ void BitcoinGUI::createTrayIcon()
     trayIcon = new QSystemTrayIcon(this);
     trayIconMenu = new QMenu(this);
     trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->setToolTip(tr("Peershares client"));
+    trayIcon->setToolTip(tr("GoDXoin client"));
     trayIcon->setIcon(QIcon(":/icons/toolbar"));
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -434,7 +434,7 @@ void BitcoinGUI::createTrayIcon()
     trayIconMenu->addAction(quitAction);
 #endif
 
-    notificator = new Notificator(tr("Peershares-qt"), trayIcon);
+    notificator = new Notificator(tr("GoDXoin-qt"), trayIcon);
 }
 
 #ifndef Q_WS_MAC
@@ -442,7 +442,7 @@ void BitcoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if(reason == QSystemTrayIcon::Trigger)
     {
-        // Click on system tray icon triggers "show/hide Peershares"
+        // Click on system tray icon triggers "show/hide GoDXoin"
         toggleHideAction->trigger();
     }
 }
@@ -498,7 +498,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Peershares network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to GoDXoin network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count)

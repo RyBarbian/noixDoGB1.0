@@ -1,7 +1,7 @@
 src/*.exe
-src/peershares
-src/peersharesd
-src/test_peershares
+src/godxoin
+src/godxoind
+src/test_godxoin
 src/build.h
 .*.swp
 *.*~*
@@ -10,11 +10,11 @@ src/build.h
 *.orig
 *.o
 *.patch
-.peershares
+.godxoin
 #compilation and Qt preprocessor part
 *.qm
 Makefile
-peershares
+godxoin
 #resources cpp
 qrc_*.cpp
 #qt creator

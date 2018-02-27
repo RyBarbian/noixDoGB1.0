@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -250,10 +250,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "stop\n"
-            "Stop Peershares server.");
+            "Stop GoDXoin server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Peershares server stopping";
+    return "GoDXoin server stopping";
 }
 
 
@@ -404,7 +404,7 @@ Value gethashespersec(const Array& params, bool fHelp)
 
 
 // peercoin: get network Gh/s estimate
-// peershares note: this is only useful during the initial proof-of-work 'IPO' phase of the network
+// godxoin note: this is only useful during the initial proof-of-work 'IPO' phase of the network
 Value getnetworkghps(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
@@ -493,7 +493,7 @@ Value getnewaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress [account]\n"
-            "Returns a new Peershares address for receiving payments.  "
+            "Returns a new GoDXoin address for receiving payments.  "
             "If [account] is specified (recommended), it is added to the address book "
             "so payments received with the address will be credited to [account].");
 
@@ -560,7 +560,7 @@ Value getaccountaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress <account>\n"
-            "Returns the current Peershares address for receiving payments to this account.");
+            "Returns the current GoDXoin address for receiving payments to this account.");
 
     // Parse the account first so we don't generate a key if there's an error
     string strAccount = AccountFromValue(params[0]);
@@ -578,12 +578,12 @@ Value setaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount <peersharesaddress> <account>\n"
+            "setaccount <godxoinaddress> <account>\n"
             "Sets the account associated with the given address.");
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(-5, "Invalid Peershares address");
+        throw JSONRPCError(-5, "Invalid GoDXoin address");
 
 
     string strAccount;
@@ -608,12 +608,12 @@ Value getaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "getaccount <peersharesaddress>\n"
+            "getaccount <godxoinaddress>\n"
             "Returns the account associated with the given address.");
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(-5, "Invalid Peershares address");
+        throw JSONRPCError(-5, "Invalid GoDXoin address");
 
     string strAccount;
     map<CBitcoinAddress, string>::iterator mi = pwalletMain->mapAddressBook.find(address);
@@ -683,17 +683,17 @@ Value sendtoaddress(const Array& params, bool fHelp)
 {
     if (pwalletMain->IsCrypted() && (fHelp || params.size() < 2 || params.size() > 4))
         throw runtime_error(
-            "sendtoaddress <peersharesaddress> <amount> [comment] [comment-to]\n"
+            "sendtoaddress <godxoinaddress> <amount> [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001\n"
             "requires portfolio passphrase to be set with walletpassphrase first");
     if (!pwalletMain->IsCrypted() && (fHelp || params.size() < 2 || params.size() > 4))
         throw runtime_error(
-            "sendtoaddress <peersharesaddress> <amount> [comment] [comment-to]\n"
+            "sendtoaddress <godxoinaddress> <amount> [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001");
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(-5, "Invalid Peershares address");
+        throw JSONRPCError(-5, "Invalid GoDXoin address");
 
     // Amount
     int64 nAmount = AmountFromValue(params[1]);
@@ -721,7 +721,7 @@ Value signmessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage <peersharesaddress> <message>\n"
+            "signmessage <godxoinaddress> <message>\n"
             "Sign a message with the private key of an address");
 
     if (pwalletMain->IsLocked())
@@ -753,7 +753,7 @@ Value verifymessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
-            "verifymessage <peersharesaddress> <signature> <message>\n"
+            "verifymessage <godxoinaddress> <signature> <message>\n"
             "Verify a signed message");
 
     string strAddress  = params[0].get_str();
@@ -786,14 +786,14 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "getreceivedbyaddress <peersharesaddress> [minconf=1]\n"
-            "Returns the total amount received by <peersharesaddress> in transactions with at least [minconf] confirmations.");
+            "getreceivedbyaddress <godxoinaddress> [minconf=1]\n"
+            "Returns the total amount received by <godxoinaddress> in transactions with at least [minconf] confirmations.");
 
     // Bitcoin address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     CScript scriptPubKey;
     if (!address.IsValid())
-        throw JSONRPCError(-5, "Invalid Peershares address");
+        throw JSONRPCError(-5, "Invalid GoDXoin address");
     scriptPubKey.SetBitcoinAddress(address);
     if (!IsMine(*pwalletMain,scriptPubKey))
         return (double)0.0;
@@ -1008,18 +1008,18 @@ Value sendfrom(const Array& params, bool fHelp)
 {
     if (pwalletMain->IsCrypted() && (fHelp || params.size() < 3 || params.size() > 6))
         throw runtime_error(
-            "sendfrom <fromaccount> <topeersharesaddress> <amount> [minconf=1] [comment] [comment-to]\n"
+            "sendfrom <fromaccount> <togodxoinaddress> <amount> [minconf=1] [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001\n"
             "requires portfolio passphrase to be set with walletpassphrase first");
     if (!pwalletMain->IsCrypted() && (fHelp || params.size() < 3 || params.size() > 6))
         throw runtime_error(
-            "sendfrom <fromaccount> <topeersharesaddress> <amount> [minconf=1] [comment] [comment-to]\n"
+            "sendfrom <fromaccount> <togodxoinaddress> <amount> [minconf=1] [comment] [comment-to]\n"
             "<amount> is a real and is rounded to the nearest 0.000001");
 
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(-5, "Invalid Peershares address");
+        throw JSONRPCError(-5, "Invalid GoDXoin address");
     int64 nAmount = AmountFromValue(params[2]);
     if (nAmount < MIN_TXOUT_AMOUNT)
         throw JSONRPCError(-101, "Send amount too small");
@@ -1082,7 +1082,7 @@ Value sendmany(const Array& params, bool fHelp)
     {
         CBitcoinAddress address(s.name_);
         if (!address.IsValid())
-            throw JSONRPCError(-5, string("Invalid Peershares address:")+s.name_);
+            throw JSONRPCError(-5, string("Invalid GoDXoin address:")+s.name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(-8, string("Invalid parameter, duplicated address: ")+s.name_);
@@ -1158,7 +1158,7 @@ Value distribute(const Array& params, bool fHelp)
         BOOST_FOREACH(const Distribution &distribution, distributor.GetDistributions())
         {
             Object obj;
-            obj.push_back(Pair("peershares_address", distribution.GetPeershareAddress().ToString()));
+            obj.push_back(Pair("godxoin_address", distribution.GetPeershareAddress().ToString()));
             obj.push_back(Pair("balance", (double)distribution.GetBalance() / COIN));
             obj.push_back(Pair("peercoin_address", distribution.GetPeercoinAddress().ToString()));
             obj.push_back(Pair("dividends", distribution.GetDividendAmount()));
@@ -1906,7 +1906,7 @@ Value encryptwallet(const Array& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys.  So:
     StartShutdown();
-    return "Portfolio encrypted; Peershares server stopping. Please restart server to run with encrypted portfolio";
+    return "Portfolio encrypted; GoDXoin server stopping. Please restart server to run with encrypted portfolio";
 }
 
 
@@ -1914,8 +1914,8 @@ Value validateaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "validateaddress <peersharesaddress>\n"
-            "Return information about <peersharesaddress>.");
+            "validateaddress <godxoinaddress>\n"
+            "Return information about <godxoinaddress>.");
 
     CBitcoinAddress address(params[0].get_str());
     bool isValid = address.IsValid();
@@ -1977,10 +1977,10 @@ Value getwork(const Array& params, bool fHelp)
             "If [data] is specified, tries to solve the block and returns true if it was successful.");
 
     if (vNodes.empty())
-        throw JSONRPCError(-9, "Peershares is not connected!");
+        throw JSONRPCError(-9, "GoDXoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "Peershares is downloading blocks...");
+        throw JSONRPCError(-10, "GoDXoin is downloading blocks...");
 
     typedef map<uint256, pair<CBlock*, CScript> > mapNewBlock_t;
     static mapNewBlock_t mapNewBlock;
@@ -2110,10 +2110,10 @@ Value getblocktemplate(const Array& params, bool fHelp)
 
     {
         if (vNodes.empty())
-            throw JSONRPCError(-9, "Peershares is not connected!");
+            throw JSONRPCError(-9, "GoDXoin is not connected!");
 
         if (IsInitialBlockDownload())
-            throw JSONRPCError(-10, "Peershares is downloading blocks...");
+            throw JSONRPCError(-10, "GoDXoin is downloading blocks...");
 
         // Update block
         static unsigned int nTransactionsUpdatedLast;
@@ -2603,7 +2603,7 @@ string HTTPPost(const string& strMsg, const map<string,string>& mapRequestHeader
 {
     ostringstream s;
     s << "POST / HTTP/1.1\r\n"
-      << "User-Agent: peershares-json-rpc/" << FormatFullVersion() << "\r\n"
+      << "User-Agent: godxoin-json-rpc/" << FormatFullVersion() << "\r\n"
       << "Host: 127.0.0.1\r\n"
       << "Content-Type: application/json\r\n"
       << "Content-Length: " << strMsg.size() << "\r\n"
@@ -2634,7 +2634,7 @@ static string HTTPReply(int nStatus, const string& strMsg)
     if (nStatus == 401)
         return strprintf("HTTP/1.0 401 Authorization Required\r\n"
             "Date: %s\r\n"
-            "Server: peershares-json-rpc/%s\r\n"
+            "Server: godxoin-json-rpc/%s\r\n"
             "WWW-Authenticate: Basic realm=\"jsonrpc\"\r\n"
             "Content-Type: text/html\r\n"
             "Content-Length: 296\r\n"
@@ -2661,7 +2661,7 @@ static string HTTPReply(int nStatus, const string& strMsg)
             "Connection: close\r\n"
             "Content-Length: %d\r\n"
             "Content-Type: application/json\r\n"
-            "Server: peershares-json-rpc/%s\r\n"
+            "Server: godxoin-json-rpc/%s\r\n"
             "\r\n"
             "%s",
         nStatus,
@@ -2882,7 +2882,7 @@ void ThreadRPCServer2(void* parg)
     {
         unsigned char rand_pwd[32];
         RAND_bytes(rand_pwd, 32);
-        string strWhatAmI = "To use peersharesd";
+        string strWhatAmI = "To use godxoind";
         if (mapArgs.count("-server"))
             strWhatAmI = strprintf(_("To use the %s option"), "\"-server\"");
         else if (mapArgs.count("-daemon"))
@@ -2890,7 +2890,7 @@ void ThreadRPCServer2(void* parg)
         ThreadSafeMessageBox(strprintf(
             _("%s, you must set a rpcpassword in the configuration file:\n %s\n"
               "It is recommended you use the following random password:\n"
-              "rpcuser=peersharesrpc\n"
+              "rpcuser=godxoinrpc\n"
               "rpcpassword=%s\n"
               "(you do not need to remember this password)\n"
               "If the file does not exist, create it with owner-readable-only file permissions.\n"),

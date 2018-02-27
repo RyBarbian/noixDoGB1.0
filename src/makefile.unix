@@ -1,6 +1,6 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
 # Copyright (c) 2011-2012 The Peercoin developers
-# Copyright (c) 2013-2014 The Peershares developers
+# Copyright (c) 2014-2018 The GoDXoin developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -115,7 +115,7 @@ OBJS= \
     obj/distribution.o
 
 
-all: peersharesd
+all: godxoind
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -133,7 +133,7 @@ obj/%.o: %.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-peersharesd: $(OBJS:obj/%=obj/%)
+godxoind: $(OBJS:obj/%=obj/%)
 	$(CXX) $(xCXXFLAGS) -rdynamic -o $@ $^ $(LDFLAGS) $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -145,11 +145,11 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_peershares: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_godxoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(LDFLAGS) $(LIBS)
 
 clean:
-	-rm -f peersharesd test_peershares
+	-rm -f godxoind test_godxoin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

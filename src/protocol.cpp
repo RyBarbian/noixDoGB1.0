@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2012-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,9 +23,9 @@ static unsigned char pchMessageStartTestOld[4] = { 0xdb, 0xe1, 0xf2, 0xf6 };
 static unsigned char pchMessageStartTestNew[4] = { 0xcb, 0xf2, 0xc0, 0xef };
 static unsigned int nMessageStartTestSwitchTime = 1346200000;
 
-// Peershares message start (switched from Bitcoin's in Peercoin v0.2)
+// GoDXoin message start (switched from Bitcoin's in Peercoin v0.2)
 static unsigned char pchMessageStartBitcoin[4] = { 0xf9, 0xbe, 0xb4, 0xd9 };
-static unsigned char pchMessageStartPeershares[4] = { 0xe6, 0xe8, 0xe9, 0xe5 };
+static unsigned char pchMessageStartGoDXoin[4] = { 0xe6, 0xe8, 0xe9, 0xe5 };
 static unsigned int nMessageStartSwitchTime = 1347300000;
 
 void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent)
@@ -33,7 +33,7 @@ void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent)
     if (fTestNet)
         memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartTestSwitchTime)? pchMessageStartTestNew : pchMessageStartTestOld, sizeof(pchMessageStartTestNew));
     else
-        memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartSwitchTime)? pchMessageStartPeershares : pchMessageStartBitcoin, sizeof(pchMessageStartPeershares));
+        memcpy(pchMessageStart, (fPersistent || GetAdjustedTime() > nMessageStartSwitchTime)? pchMessageStartGoDXoin : pchMessageStartBitcoin, sizeof(pchMessageStartGoDXoin));
 }
 
 static const char* ppszTypeName[] =

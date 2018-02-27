@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2012 Bitcoin Developers
 // Copyright (c) 2012-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -111,7 +111,7 @@ Value exportpeercoinkeys(const Array& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "exportpeercoinkeys\n"
-            "Add the Peercoin keys associated with the Peershares addresses to the Peercoin wallet. Peercoin must be running and accept RPC commands.");
+            "Add the Peercoin keys associated with the GoDXoin addresses to the Peercoin wallet. Peercoin must be running and accept RPC commands.");
 
     if (pwalletMain->IsLocked())
         throw JSONRPCError(-13, "Error: Please enter the wallet passphrase with walletpassphrase first.");

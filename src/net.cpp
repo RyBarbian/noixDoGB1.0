@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -251,7 +251,7 @@ bool GetMyExternalIP(CNetAddr& ipRet)
 
 void ThreadGetMyExternalIP(void* parg)
 {
-    // Wait for IRC to get it first - disabled with peershares
+    // Wait for IRC to get it first - disabled with godxoin
     if (false && GetBoolArg("-irc", false))
     {
         for (int i = 0; i < 2 * 60; i++)
@@ -905,7 +905,7 @@ void ThreadMapPort2(void* parg)
             }
         }
 
-        string strDesc = "Peershares " + FormatFullVersion();
+        string strDesc = "GoDXoin " + FormatFullVersion();
 #ifndef UPNPDISCOVER_SUCCESS
         /* miniupnpc 1.5 */
         r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
@@ -996,13 +996,15 @@ void MapPort(bool /* unused fMapPort */)
 // Each pair gives a source name and a seed name.
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
-// testnet dns seed begins with 't', all else are peershares dns seeds.
+// testnet dns seed begins with 't', all else are godxoin dns seeds.
 static const char *strDNSSeed[][2] = {
     // NOTE: Only testnet nodes are included in this build. If you are using this
-    // for a real Peershares offering, you will want to remove the "t" that
+    // for a real GoDXoin offering, you will want to remove the "t" that
     // appears before the node name and IP
-    {"tPeershares NODE_2_EU-Ireland", "t54.72.105.68"},
-    {"tPeershares NODE_3_SE-A_Singapore", "t54.255.142.16"},
+    {"ec2-18-216-135-92.us-east-2.compute.amazonaws.com", "18.216.135.92"},
+    {"ec2-18-218-11-35.us-east-2.compute.amazonaws.com", "18.218.11.35"},
+    {"ns-487.awsdns-60.com","205.251.193.231"},
+    {"ec2-52-14-210-79.us-east-2.compute.amazonaws.com","52.14.210.79"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1071,7 +1073,7 @@ void ThreadDNSAddressSeed2(void* parg)
 // Physical IP seeds: 32-bit IPv4 addresses: e.g. 178.33.22.32 = 0x201621b2
 unsigned int pnSeed[] =
 {
-    0x36a3b545, 0x3c1c26d8, 0x4031eb6d, 0x4d3463d1, 0x586a6854, 0x5da9ae65,
+    0x5c87d812, 0x230bda12, 0x4fd20e34, 0x0211db12, 0x586a6854, 0x5da9ae65,
     0x6deb7318, 0x9083fb63, 0x961bf618, 0xcabd2e4e, 0xcb766dd5, 0xdd514518,
     0xdff010b8, 0xe9bb6044, 0xedb24a4c,
 };
@@ -1522,7 +1524,7 @@ bool BindListenPort(string& strError)
     {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to port %d on this computer.  Peershares is probably already running."), ntohs(sockaddr.sin_port));
+            strError = strprintf(_("Unable to bind to port %d on this computer.  GoDXoin is probably already running."), ntohs(sockaddr.sin_port));
         else
             strError = strprintf("Error: Unable to bind to port %d on this computer (bind returned error %d)", ntohs(sockaddr.sin_port), nErr);
         printf("%s\n", strError.c_str());
@@ -1644,7 +1646,7 @@ void StartNode(void* parg)
     // Get addresses from IRC and advertise ours
     // if (!CreateThread(ThreadIRCSeed, NULL))
     //     printf("Error: CreateThread(ThreadIRCSeed) failed\n");
-    // IRC disabled with peershares
+    // IRC disabled with godxoin
     printf("IRC seeding/communication disabled\n");
 
     // Send and receive from sockets, accept connections

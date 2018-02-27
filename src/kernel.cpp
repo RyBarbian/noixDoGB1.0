@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,8 +11,8 @@
 using namespace std;
 
 // Protocol switch time of v0.3 kernel protocol
-unsigned int nProtocolV03SwitchTime     = 1398816000; // 2014-04-30 00:00:00 UTC
-unsigned int nProtocolV03TestSwitchTime = 1398816000; // 2014-04-30 00:00:00 UTC
+unsigned int nProtocolV03SwitchTime     = 1518566400; // 2018-02-14 00:00:00 GMT
+unsigned int nProtocolV03TestSwitchTime = 1519948800; // 2018-02-30 00:00:00 GMT
 
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 6-hour for production network and 20-minute for test network
@@ -244,7 +244,7 @@ static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64& nStakeModifier
     return true;
 }
 
-// Peershares kernel protocol
+// GoDXoin kernel protocol
 // coinstake must meet hash target according to the protocol:
 // kernel (input 0) must meet the formula
 //     hash(nStakeModifier + txPrev.block.nTime + txPrev.offset + txPrev.nTime + txPrev.vout.n + nTime) < bnTarget * nCoinDayWeight
@@ -282,7 +282,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
     // peercoin: v0.3 protocol kernel hash weight starts from 0 at the 30-day min age
     // this change increases active coins participating the hash and helps
     // to secure the network when proof-of-stake difficulty is low
-    // peershares: v0.1 protocol default kernel hash weight starts from 0 at the 3-day min age
+    // godxoin: v0.1 protocol default kernel hash weight starts from 0 at the 3-day min age
     int64 nTimeWeight = min((int64)nTimeTx - txPrev.nTime, (int64)STAKE_MAX_AGE) - (IsProtocolV03(nTimeTx)? nStakeMinAge : 0);
     CBigNum bnCoinDayWeight = CBigNum(nValueIn) * nTimeWeight / COIN / (24 * 60 * 60);
     // Calculate hash

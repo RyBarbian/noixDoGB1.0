@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2013 The Peercoin developers
-// Copyright (c) 2013-2014 The Peershares developers
+// Copyright (c) 2014-2018 The GoDXoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_MAIN_H
@@ -35,18 +35,18 @@ static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int64 MIN_TX_FEE = CENT;
 static const int64 MIN_RELAY_TX_FEE = CENT;
-static const int64 MAX_MONEY = 2000000000 * COIN;
+static const int64 MAX_MONEY = 2000000000000 * COIN;
 static const int64 MAX_MINT_PROOF_OF_WORK = 9999 * COIN;
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
-static const int COINBASE_MATURITY_PPC = 100; // Adapted for Peershares - same as it is set in Bitcoin, where Peercoin is 500
+static const int COINBASE_MATURITY_GODX = 100; // Adapted for GoDXoin 
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
-static const int STAKE_TARGET_SPACING = 60 * 30; // peershares: 30 minute block spacing 
-static const int STAKE_MIN_AGE = 60 * 60 * 24 * 3; // peershares: Minimum age for coin age changed to 3 days 
-static const int STAKE_MAX_AGE = 60 * 60 * 24 * 90; // peershares: Stake age of full weight
-static const int64 IPO_SHARES = 1000000 * COIN; // peershares: Total number of shares to create using proof of work (intented for IPO)
-static const int64 PROOF_OF_WORK_BLOCKS = 400; // peershares: Block height of the last proof of work block
+static const int STAKE_TARGET_SPACING = 60 * 30; // godxoin: 30 minute block spacing 
+static const int STAKE_MIN_AGE = 60 * 60 * 24 * 3; // godxoin: Minimum age for coin age changed to 3 days 
+static const int STAKE_MAX_AGE = 60 * 60 * 24 * 90; // godxoin: Stake age of full weight
+static const int64 IPO_SHARES = 2000000000000 * COIN; // godxoin: Total number of shares to create using proof of work (intented for IPO)
+static const int64 PROOF_OF_WORK_BLOCKS = 10; // godxoin: Block height of the last proof of work block
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
@@ -558,7 +558,7 @@ public:
      */
     unsigned int GetP2SHSigOpCount(const MapPrevTx& mapInputs) const;
 
-    /** Amount of peershares spent by this transaction.
+    /** Amount of godxoin spent by this transaction.
         @return sum of all outputs (note: does not include fees)
      */
     int64 GetValueOut() const
@@ -573,7 +573,7 @@ public:
         return nValueOut;
     }
 
-    /** Amount of peershares coming in to this transaction
+    /** Amount of godxoin coming in to this transaction
         Note that lightweight clients may not know anything besides the hash of previous transactions,
         so may not be able to calculate this.
 
