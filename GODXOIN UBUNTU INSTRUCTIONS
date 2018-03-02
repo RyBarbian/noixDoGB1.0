@@ -55,6 +55,7 @@ $ sudo nano godxoin.conf
 # Note: This setup does not look for, or connect to, remote network nodes
 
 
+
 *****Change urpcser and rpcpassword****
 server=1
 testnet=1
