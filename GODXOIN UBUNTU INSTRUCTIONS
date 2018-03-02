@@ -1,0 +1,82 @@
+snag the BTC repo so that libdb4.8++-dev package can be used
+
+sudo apt-add-repository ppa:bitcoin/bitcoin
+
+
+
+Make sure build enviroment is up to date
+
+$ sudo apt-get update 
+$ sudo apt-get install git build-essential g++ libssl-dev libboost-all-dev libdb4.8++-dev libqrencode-dev qt4-qmake libqt4-dev
+
+
+Download and Install Mini-UPnPC
+
+$ mkdir miniupnpc
+$ cd miniupnpc
+$ wget "http://miniupnp.tuxfamily.org/files/miniupnpc-1.9.tar.gz"
+$ tar -zxvf miniupnpc-1.9.tar.gz
+$ cd miniupnpc-1.9/
+$ sudo make install
+$ cd ~/
+
+
+Clone the GoDxoin Beta v 1.0.1 repo from Git
+
+$ git clone https://github.com/RyBarbian/noixDoGB1.0.git
+(it's spelled backward and dl's a folder named noixDoGB1.0/src to keep it semi-secret (just to keep the test net secure))
+
+
+
+Compile the GoDxoin Beta v 1.0.1 daemon (godxoind)
+
+$ cd ~/noixDoGB1.0/src/
+$ make -f makefile.unix
+
+# daemon will be compiled, and can be started from the command line
+($ .godxoind --daemon) 
+
+Compile the GoDxoin Beta v 1.0.1 Wallet Client
+
+$ cd ~/noixDoGB1.0
+$ qmake
+$ make 
+
+#qt wallet will be compiled, and can be run by double clicking godxoin executable
+
+
+In the $ .godxoin folder make a godxoin.conf file
+$ cd .godxoin
+$ touch godxoin.conf
+$ sudo nano godxoin.conf
+
+
+# 'Clean' configuration file for GoDxoin Beta v 1.0.1 development
+# Note: This setup does not look for, or connect to, remote network nodes
+
+
+*****Change urpcser and rpcpassword****
+server=1
+testnet=1
+
+rpcuser=*yourname(no spaces)*
+rpcpassword=*yourpassword*
+rpcport=9923
+
+
+Save the changes to the file.
+
+ctrl+o in nano text editor
+ctrl+z exits nano
+
+#relaunch godxoind
+
+cd
+cd .godxoin
+./godxoind stop
+./godxoind --daemon
+./godxoind getinfo
+./godxoind help
+./godxoin addnode=(ipaddress)
+
+
