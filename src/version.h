@@ -29,16 +29,16 @@ extern const std::string CLIENT_BUILD;
 extern const std::string CLIENT_DATE;
 
 // godxoin version - intended for display purpose ONLY
-#define PEERSHARES_VERSION_MAJOR       0
-#define PEERSHARES_VERSION_MINOR       1
-#define PEERSHARES_VERSION_REVISION    0
-#define PEERSHARES_VERSION_BUILD       0
+#define GODXOIN_VERSION_MAJOR       0
+#define GODXOIN_VERSION_MINOR       1
+#define GODXOIN_VERSION_REVISION    0
+#define GODXOIN_VERSION_BUILD       0
 
-static const int PEERSHARES_VERSION =
-                           1000000 * PEERSHARES_VERSION_MAJOR
-                         +   10000 * PEERSHARES_VERSION_MINOR
-                         +     100 * PEERSHARES_VERSION_REVISION
-                         +       1 * PEERSHARES_VERSION_BUILD;
+static const int GODXOIN_VERSION =
+                           1000000 * GODXOIN_VERSION_MAJOR
+                         +   10000 * GODXOIN_VERSION_MINOR
+                         +     100 * GODXOIN_VERSION_REVISION
+                         +       1 * GODXOIN_VERSION_BUILD;
 
 //
 // network protocol versioning

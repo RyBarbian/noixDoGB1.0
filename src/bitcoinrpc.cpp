@@ -3141,7 +3141,7 @@ std::string CallPeercoinRPC(const std::string &strMethod, const Array &params)
     SSLStream sslStream(io_service, context);
     SSLIOStreamDevice d(sslStream, fUseSSL);
     iostreams::stream<SSLIOStreamDevice> stream(d);
-    if (!d.connect(GetPeercoinArg("-rpcconnect", "127.0.0.1"), GetPeercoinArg("-rpcport", CBigNum(fTestNet? PEERCOIN_TESTNET_RPC_PORT : PEERCOIN_RPC_PORT).ToString().c_str())))
+    if (!d.connect(GetPeercoinArg("-rpcconnect", "127.0.0.1"), GetPeercoinArg("-rpcport", CBigNum(fTestNet? GODXOIN_TESTNET_RPC_PORT : GODXOIN_RPC_PORT).ToString().c_str())))
         throw runtime_error("couldn't connect to Peercoin RPC server");
 
     // HTTP basic authentication

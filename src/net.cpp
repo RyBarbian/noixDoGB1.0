@@ -1002,9 +1002,9 @@ static const char *strDNSSeed[][2] = {
     // for a real GoDXoin offering, you will want to remove the "t" that
     // appears before the node name and IP
     {"ec2-18-216-135-92.us-east-2.compute.amazonaws.com", "18.216.135.92"},
-    {"ec2-18-218-11-35.us-east-2.compute.amazonaws.com", "18.218.11.35"},
-    {"ns-487.awsdns-60.com","205.251.193.231"},
-    {"ec2-52-14-210-79.us-east-2.compute.amazonaws.com","52.14.210.79"},
+ //   {"ec2-18-218-11-35.us-east-2.compute.amazonaws.com", "18.218.11.35"},
+ //   {"ns-487.awsdns-60.com","205.251.193.231"},
+ //   {"ec2-52-14-210-79.us-east-2.compute.amazonaws.com","52.14.210.79"},
 };
 
 void ThreadDNSAddressSeed(void* parg)

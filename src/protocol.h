@@ -15,13 +15,13 @@
 #include <string>
 #include "uint256.h"
 
-#define PEERSHARES_PORT  9921
-#define RPC_PORT     9922
+#define GODXOIN_PORT  30000
+#define RPC_PORT     33333
 #define TESTNET_PORT 47891
 #define TESTNET_RPC_PORT 47892
 
-#define PEERCOIN_RPC_PORT         9902
-#define PEERCOIN_TESTNET_RPC_PORT 9904
+#define GODXOIN_RPC_PORT         9902
+#define GODXOIN_TESTNET_RPC_PORT 9904
 
 extern bool fTestNet;
 
@@ -29,7 +29,7 @@ void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent = false);
 
 static inline unsigned short GetDefaultPort(const bool testnet = fTestNet)
 {
-    return testnet ? TESTNET_PORT : PEERSHARES_PORT;
+    return testnet ? TESTNET_PORT : GODXOIN_PORT;
 }
 
 

@@ -83,7 +83,7 @@ script: |
     cp $BINDIR/godxoin.exe release/
     cp $BINDIR/godxoind.exe release/
     makensis share/setup.nsi
-    cp share/Smiles-*setup*.exe $BINDIR
+    cp share/Godxoin-*setup*.exe $BINDIR
     unset LD_PRELOAD
     unset FAKETIME
   done # for BITS in

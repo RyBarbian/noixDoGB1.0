@@ -1,4 +1,4 @@
-Copyright (c) 2014-2018 Smiles Developers
+Copyright (c) 2014-2018 Godxoin Developers
 Copyright (c) 2012-2013 Peercoin Developers
 Copyright (c) 2009-2012 Bitcoin Developers
 Distributed under the MIT/X11 software license, see the accompanying file
@@ -18,12 +18,12 @@ Douglas Huff <dhuff@jrbobdobbs.org>
 Modified for Peercoin by 
 Jeff Larkin <jefflarkin@gmail.com>
 
-Modified for Smiles by
+Modified for Godxoin by
 Ben Rossi <brossicrypto@gmail.com>
 
 
 
-See readme-qt.rst for instructions on building Smiles-QT, the
+See readme-qt.rst for instructions on building Godxoin-QT, the
 graphical user interface.
 
 Tested on 10.8 and 10.9 (Intel).  Older versions of OS X (10.5 and 10.6) should be possible, but have not been tested. PowerPC (GODX) is not supported because it's big-endian.

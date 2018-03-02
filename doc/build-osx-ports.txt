@@ -9,7 +9,7 @@ Thomas Bernard.
 
 
 Mac OS X Mountain Lion build instructions
-How to build godxoind and Smiles-Qt on 10.8
+How to build godxoind and Godxoin-Qt on 10.8
 
 
 Prerequisites
@@ -29,18 +29,18 @@ sudo port install boost db48@+no_java openssl miniupnpc
 
 4.  Clone the github tree to get the source code
 
-git clone https://github.com/Smiles/Smiles.git
+git clone https://github.com/Godxoin/Godxoin.git
 
 
 Building godxoind
 
 1.  Run the makefile
 
-cd Smiles/src/
+cd Godxoin/src/
 make -f makefile.osx RELEASE=true 64BIT=true CXX=g++
 
 
-Building Smiles-Qt.app
+Building Godxoin-Qt.app
 
 You cannot use Qt 4.8.6 if you want to deploy to other systems
 http://qt-project.org/forums/viewthread/41925
@@ -52,13 +52,13 @@ http://download.qt-project.org/archive/qt/4.8/4.8.5/qt-mac-opensource-4.8.5.dmg
 
 3.  Use Qt Creator to build the project
 
-Double-click Smiles/godxoin-qt.pro to open Qt-Creator
+Double-click Godxoin/godxoin-qt.pro to open Qt-Creator
 Click the Configure Project button
 Click on the monitor icon on the left bar above Debug and change it to Release
 On the top menu, click Build and Build Project "godxoin-qt"
 
 
-Deploying Smiles-Qt.app
+Deploying Godxoin-Qt.app
 
 Deploying your app is needed to run it on non-development systems
 
@@ -67,16 +67,16 @@ Deploying your app is needed to run it on non-development systems
 sudo ln -s /opt/local/lib /opt/local/lib/lib
 sudo ln -s /opt/local/lib/db48/libdb_cxx-4.8.dylib /opt/local/lib/libdb_cxx-4.8.dylib
 
-2.  Copy Smiles-Qt.app and run macdeployqt to bundle required libraries
+2.  Copy Godxoin-Qt.app and run macdeployqt to bundle required libraries
 
 mkdir deploy
-cp -r build-godxoin-qt-Desktop-Release/Smiles-Qt.app/ deploy/Smiles-Qt.app/
-sudo macdeployqt deploy/Smiles-Qt.app/
+cp -r build-godxoin-qt-Desktop-Release/Godxoin-Qt.app/ deploy/Godxoin-Qt.app/
+sudo macdeployqt deploy/Godxoin-Qt.app/
 
 3.  Fix a dependency path
 
-install_name_tool -change "/opt/local/lib/db48/libdb_cxx-4.8.dylib" "@executable_path/../Frameworks/libdb_cxx-4.8.dylib" deploy/Smiles-Qt.app/Contents/MacOS/Smiles-Qt
+install_name_tool -change "/opt/local/lib/db48/libdb_cxx-4.8.dylib" "@executable_path/../Frameworks/libdb_cxx-4.8.dylib" deploy/Godxoin-Qt.app/Contents/MacOS/Godxoin-Qt
 
-4.  Compress Smiles-Qt.app into a zip
+4.  Compress Godxoin-Qt.app into a zip
 
-Right-click on Smiles-Qt.app and click Compress
+Right-click on Godxoin-Qt.app and click Compress

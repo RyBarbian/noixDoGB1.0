@@ -46,7 +46,7 @@ static const int STAKE_TARGET_SPACING = 60 * 30; // godxoin: 30 minute block spa
 static const int STAKE_MIN_AGE = 60 * 60 * 24 * 3; // godxoin: Minimum age for coin age changed to 3 days 
 static const int STAKE_MAX_AGE = 60 * 60 * 24 * 90; // godxoin: Stake age of full weight
 static const int64 IPO_SHARES = 2000000000000 * COIN; // godxoin: Total number of shares to create using proof of work (intented for IPO)
-static const int64 PROOF_OF_WORK_BLOCKS = 10; // godxoin: Block height of the last proof of work block
+static const int64 PROOF_OF_WORK_BLOCKS = 400; // godxoin: Block height of the last proof of work block
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
